@@ -64,7 +64,7 @@ public class Pedido implements Serializable  {
 		for(ItemPedido ip : itens ) {
 			soma = soma + ip.getSubTotal();
 		}
-		return soma;
+		return soma; 
 	}
 	
 	public Integer getId() {
