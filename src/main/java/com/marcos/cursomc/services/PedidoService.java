@@ -10,11 +10,9 @@ import com.marcos.cursomc.domain.ItemPedido;
 import com.marcos.cursomc.domain.PagamentoComBoleto;
 import com.marcos.cursomc.domain.Pedido;
 import com.marcos.cursomc.domain.enums.EstadoPagamento;
-import com.marcos.cursomc.repositories.ClienteRepository;
 import com.marcos.cursomc.repositories.ItemPedidoRepository;
 import com.marcos.cursomc.repositories.PagamentoRepository;
 import com.marcos.cursomc.repositories.PedidoRepository;
-import com.marcos.cursomc.repositories.ProdutoRepository;
 import com.marcos.cursomc.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -66,7 +64,7 @@ public class PedidoService {
 			ip.setPedido(obj);
 		}
 		itemPedidoRepository.saveAll(obj.getItens());
-		emailService.sendOrderConfirmationHtmlEmail(obj);
+		emailService.sendOrderConfirmationEmail(obj);
 		return obj;   
 		
 	}
