@@ -44,6 +44,8 @@ public abstract class AbstractEmailService implements EmailService {
 		sm.setText("Nova senha: " + newPass);
 		return sm;
 	}
+	
+	
 }
 
 
