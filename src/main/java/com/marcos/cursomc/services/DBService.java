@@ -74,7 +74,7 @@ public class DBservice {
 		Produto p4 = new Produto(null, "Mesa de escritório", 300.00);
 		Produto p5 = new Produto(null,"Toalha", 50.00);
 		Produto p6 = new Produto(null,"Colcha", 200.00);
-		Produto p7 = new Produto(null, "TV true color", 120.00);
+		Produto p7 = new Produto(null, "TV true color", 1200.00);
 		Produto p8 = new Produto(null, "Roçadeira", 800.00);
 		Produto p9 = new Produto(null,"Abajour", 100.00);
 		Produto p10 = new Produto(null, "Pendenta", 180.00);

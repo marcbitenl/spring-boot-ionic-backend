@@ -4,10 +4,9 @@ import java.io.Serializable;
 
 import com.marcos.cursomc.domain.Estado;
 
-public class EstadoDTO implements Serializable  {
-	
+public class EstadoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Integer id;
 	private String nome;
 	
@@ -15,10 +14,10 @@ public class EstadoDTO implements Serializable  {
 	}
 
 	public EstadoDTO(Estado obj) {
-		id =obj.getId();
+		id = obj.getId();
 		nome = obj.getNome();
 	}
-
+	
 	public Integer getId() {
 		return id;
 	}
@@ -34,8 +33,4 @@ public class EstadoDTO implements Serializable  {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	
-	
-	
 }

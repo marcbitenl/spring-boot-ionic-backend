@@ -35,20 +35,20 @@ import com.marcos.cursomc.services.exceptions.ObjectNotFoundException;
 public class ClienteService {
 	
 	@Autowired
+	private BCryptPasswordEncoder pe;
+	
+	@Autowired
 	private ClienteRepository repo;
 	
 	@Autowired
 	private EnderecoRepository enderecoRepository;
 	
 	@Autowired
-	private BCryptPasswordEncoder pe;
-	
-	@Autowired
 	private S3Service s3Service;
 	
 	@Autowired
 	private ImageService imageService;
-		
+	
 	@Value("${img.prefix.client.profile}")
 	private String prefix;
 	
@@ -58,8 +58,8 @@ public class ClienteService {
 	public Cliente find(Integer id) {
 		
 		UserSS user = UserService.authenticated();
-		if (user==null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
-			throw new AuthorizationException("Acesso negado");
+		if(user==null || !user.hasRole(Perfil.ADMIN) &&  !id.equals(user.getId())) {
+			throw new AuthorizationException("Acesso Negado");
 		}
 		
 		Optional<Cliente> obj = repo.findById(id);
@@ -96,17 +96,18 @@ public class ClienteService {
 	}
 	
 	public Cliente findByEmail(String email) {
+		
 		UserSS user = UserService.authenticated();
-		if (user == null || !user.hasRole(Perfil.ADMIN) && !email.equals(user.getUsername())) {
-			throw new AuthorizationException("Acesso negado");
+		if(user==null || user.hasRole(Perfil.ADMIN) && !email.equals(user.getUsername())) {
+			throw new AuthorizationException("Acesso Negado");
 		}
-	
 		Cliente obj = repo.findByEmail(email);
-		if (obj == null) {
-			throw new ObjectNotFoundException(
-					"Objeto não encontrado! Id: " + user.getId() + ", Tipo: " + Cliente.class.getName());
+		if(obj == null) {
+			throw new ObjectNotFoundException("Objeto não encontrado! Id: " + user.getId()
+			+ ", Tipo: " +Cliente.class.getName());
 		}
 		return obj;
+		
 	}
 	
 	public Page<Cliente> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
@@ -114,12 +115,13 @@ public class ClienteService {
 		return repo.findAll(pageRequest);
 	}
 	
+	
 	public Cliente fromDTO(ClienteDTO objDto) {
 		return new Cliente(objDto.getId(), objDto.getNome(), objDto.getEmail(), null, null, null);
 	}
 	
 	public Cliente fromDTO(ClienteNewDTO objDto) {
-		Cliente cli = new Cliente(null, objDto.getNome(), objDto.getEmail(), objDto.getCpfOuCnpj(), TipoCliente.toEnum(objDto.getTipo()), pe.encode(objDto.getSenha()));
+		Cliente cli = new Cliente(null, objDto.getNome(), objDto.getEmail(), objDto.getCpfOuCnpj(),TipoCliente.toEnum(objDto.getTipo()), pe.encode(objDto.getSenha()));
 		Cidade cid = new Cidade(objDto.getCidadeId(), null, null);
 		Endereco end = new Endereco(null, objDto.getLogradouro(), objDto.getNumero(), objDto.getComplemento(), objDto.getBairro(), objDto.getCep(), cli, cid);
 		cli.getEnderecos().add(end);

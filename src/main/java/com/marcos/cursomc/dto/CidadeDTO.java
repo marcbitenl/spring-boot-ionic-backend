@@ -4,21 +4,20 @@ import java.io.Serializable;
 
 import com.marcos.cursomc.domain.Cidade;
 
-public class CidadeDTO implements Serializable  {
-	
+public class CidadeDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Integer id;
 	private String nome;
 	
 	public CidadeDTO() {
 	}
-	
+
 	public CidadeDTO(Cidade obj) {
 		id = obj.getId();
 		nome = obj.getNome();
 	}
-
+	
 	public Integer getId() {
 		return id;
 	}
@@ -34,8 +33,4 @@ public class CidadeDTO implements Serializable  {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	
-	
-	
 }

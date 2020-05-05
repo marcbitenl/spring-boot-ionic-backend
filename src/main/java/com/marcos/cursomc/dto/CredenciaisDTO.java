@@ -2,13 +2,11 @@ package com.marcos.cursomc.dto;
 
 import java.io.Serializable;
 
-public class CredenciaisDTO implements Serializable  {
-	
+public class CredenciaisDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private String email;//nome de usuário
+	private String email;
 	private String senha;
-	
 	
 	public CredenciaisDTO() {
 	}

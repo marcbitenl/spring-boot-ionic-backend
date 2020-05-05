@@ -21,7 +21,6 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.marcos.cursomc.domain.enums.Perfil;
 import com.marcos.cursomc.domain.enums.TipoCliente;
-
 @Entity
 public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
