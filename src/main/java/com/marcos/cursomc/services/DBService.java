@@ -241,7 +241,7 @@ public class DBservice {
 		Pagamento pagto2 = new PagamentoComBoleto(null, EstadoPagamento.PENDENTE, ped2, sdf.parse("20/10/2017 00:00"), null);
 		ped2.setPagamento(pagto2);
 		
-		cli1.getPedido().addAll(Arrays.asList(ped1,ped2));
+		cli1.getPedidos().addAll(Arrays.asList(ped1,ped2));
 		
 		pedidoRepository.saveAll(Arrays.asList(ped1,ped2));
 		pagamentoRepository.saveAll(Arrays.asList(pagto1,pagto2));

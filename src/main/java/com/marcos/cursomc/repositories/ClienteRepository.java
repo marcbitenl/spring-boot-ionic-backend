@@ -6,11 +6,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.marcos.cursomc.domain.Cliente;
 
-@Repository 
+@Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
-	
+
 	@Transactional(readOnly=true)
 	Cliente findByEmail(String email);
-	
-
 }
