@@ -26,34 +26,33 @@ public class JWTUtil {
 				.compact();
 	}
 	
-	public boolean tokenValido (String token) {
-		Claims claims  = getClaimS(token);
-		if(claims != null ) {
+	public boolean tokenValido(String token) {
+		Claims claims = getClaims(token);
+		if (claims != null) {
 			String username = claims.getSubject();
 			Date expirationDate = claims.getExpiration();
 			Date now = new Date(System.currentTimeMillis());
-			if(username != null  && expirationDate != null  && now.before(expirationDate))  {//Instante Atual é inferior a data de expiração
+			if (username != null && expirationDate != null && now.before(expirationDate)) {
 				return true;
 			}
 		}
-	return false;
+		return false;
 	}
-	
-	public String getUsername (String token) {
-		Claims claims  = getClaimS(token);
-		if(claims != null ) {
+
+	public String getUsername(String token) {
+		Claims claims = getClaims(token);
+		if (claims != null) {
 			return claims.getSubject();
 		}
 		return null;
 	}
-
-	private Claims getClaimS(String token) {// Função que recupera os claims apartir do token
+	
+	private Claims getClaims(String token) {
 		try {
-		return Jwts.parser().setSigningKey(secret.getBytes()).parseClaimsJws(token).getBody();
-	}
-		catch(Exception e) {
+			return Jwts.parser().setSigningKey(secret.getBytes()).parseClaimsJws(token).getBody();
+		}
+		catch (Exception e) {
 			return null;
 		}
 	}
-	
 }

@@ -10,13 +10,12 @@ import javax.persistence.Entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class ItemPedido implements Serializable  {
-	
+public class ItemPedido implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
 	@JsonIgnore
 	@EmbeddedId
-	private ItemPedidoPK id = new ItemPedidoPK(); 
+	private ItemPedidoPK id = new ItemPedidoPK();
 	
 	private Double desconto;
 	private Integer quantidade;
@@ -35,10 +34,8 @@ public class ItemPedido implements Serializable  {
 	}
 
 	public double getSubTotal() {
-		return (preco- desconto) * quantidade;
+		return (preco - desconto) * quantidade;
 	}
-	
-	
 	
 	@JsonIgnore
 	public Pedido getPedido() {
@@ -49,16 +46,13 @@ public class ItemPedido implements Serializable  {
 		id.setPedido(pedido);
 	}
 	
-	
 	public Produto getProduto() {
 		return id.getProduto();
 	}
 	
 	public void setProduto(Produto produto) {
-			id.setProduto(produto);
-		
+		id.setProduto(produto);
 	}
-	
 	
 	public ItemPedidoPK getId() {
 		return id;
@@ -116,11 +110,10 @@ public class ItemPedido implements Serializable  {
 			return false;
 		return true;
 	}
-
+	
 	@Override
 	public String toString() {
-		NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt","BR"));
-				
+		NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
 		StringBuilder builder = new StringBuilder();
 		builder.append(getProduto().getNome());
 		builder.append(", Qte: ");
@@ -132,10 +125,4 @@ public class ItemPedido implements Serializable  {
 		builder.append("\n");
 		return builder.toString();
 	}
-	
-	
-
-	
-	
-	
 }

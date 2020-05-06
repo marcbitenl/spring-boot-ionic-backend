@@ -74,7 +74,7 @@ public class DBservice {
 		Produto p4 = new Produto(null, "Mesa de escritório", 300.00);
 		Produto p5 = new Produto(null,"Toalha", 50.00);
 		Produto p6 = new Produto(null,"Colcha", 200.00);
-		Produto p7 = new Produto(null, "TV true color", 120.00);
+		Produto p7 = new Produto(null, "TV true color", 1200.00);
 		Produto p8 = new Produto(null, "Roçadeira", 800.00);
 		Produto p9 = new Produto(null,"Abajour", 100.00);
 		Produto p10 = new Produto(null, "Pendenta", 180.00);
@@ -241,7 +241,7 @@ public class DBservice {
 		Pagamento pagto2 = new PagamentoComBoleto(null, EstadoPagamento.PENDENTE, ped2, sdf.parse("20/10/2017 00:00"), null);
 		ped2.setPagamento(pagto2);
 		
-		cli1.getPedido().addAll(Arrays.asList(ped1,ped2));
+		cli1.getPedidos().addAll(Arrays.asList(ped1,ped2));
 		
 		pedidoRepository.saveAll(Arrays.asList(ped1,ped2));
 		pagamentoRepository.saveAll(Arrays.asList(pagto1,pagto2));
